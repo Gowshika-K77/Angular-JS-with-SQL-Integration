@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html ng-app="loginApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Login | Event Management</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+
+  <style>
+    /* 🌈 Background gradient animation */
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(-45deg, #ff6ec7, #7367f0, #00c9ff, #92fe9d);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* 🌟 Login container */
+    .login-box {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 40px;
+      width: 350px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .login-box:hover {
+      transform: scale(1.03);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    h2 {
+      margin-bottom: 25px;
+      font-size: 26px;
+      letter-spacing: 1px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    input {
+      width: 90%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      outline: none;
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      transition: background 0.3s;
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    input:focus {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    button {
+      width: 95%;
+      padding: 12px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      background: linear-gradient(90deg, #ff6ec7, #7367f0, #00c9ff);
+      color: white;
+      transition: 0.4s;
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, #00c9ff, #7367f0, #ff6ec7);
+      transform: scale(1.05);
+    }
+
+    .error {
+      color: #ffcccc;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      color: #fff;
+      font-size: 13px;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+
+<body ng-controller="LoginCtrl">
+  <div class="login-box">
+    <h2>Admin Login</h2>
+
+    <form ng-submit="login()">
+      <input type="text" ng-model="username" placeholder="👤 Username" required>
+      <input type="password" ng-model="password" placeholder="🔒 Password" required>
+      <button type="submit">Login</button>
+    </form>
+
+    <div class="error" ng-if="errorMessage">{{errorMessage}}</div>
+  </div>
+
+  <footer>© 2025 Event Management System</footer>
+
+  <script>
+    const app = angular.module('loginApp', []);
+
+    app.controller('LoginCtrl', function($scope) {
+      const adminUser = "admin";
+      const adminPass = "12345";
+
+      $scope.login = function() {
+        if ($scope.username === adminUser && $scope.password === adminPass) {
+          // Redirect to main dashboard
+          window.location.href = "index.html";
+        } else {
+          $scope.errorMessage = "❌ Invalid username or password!";
+        }
+      };
+    });
+  </script>
+</body>
+</html>
